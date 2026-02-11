@@ -1,4 +1,4 @@
-# Lexophile's Collection
+# 🧩🔠 Lexophile's Collection
 
 A simple collection of word games you can play on whatever terminal or console you prefer!
 
@@ -7,6 +7,8 @@ Largely coded in Python (the only language I know to an intermediate level).
 ## Functionality
 
 Upon running the script, you will be met with the Menu screen, which will be your main navigation point.
+
+<img width="918" height="358" alt="image" src="https://github.com/user-attachments/assets/4e1ee399-b9fc-434c-be76-295dfb276bb6" />
 
 There are currently **11 modes**:
 
@@ -47,6 +49,8 @@ To make a valid word, it must satisfy the conditions:
 
 Additionally, you're given a maximum of 3 tries. You lose one try if you reuse a word.
 
+<img width="780" height="478" alt="image" src="https://github.com/user-attachments/assets/49c25122-5dd8-4de8-8492-8fc17a9350cd" />
+
 The game simply ends when you run out of tries or you activate a command.
 
 ### 2. Word Chain
@@ -60,6 +64,8 @@ The conditions are similar to that of Solobomber:
 
 And, just like Solobomber, you have a maximum of 3 tries. However, aside from reusing a word, making a word that doesn't start 
 with the correct letter will also take away one try.
+
+<img width="746" height="422" alt="image" src="https://github.com/user-attachments/assets/2d7fda2c-6388-4f6d-b308-53a3ae5d9472" />
 
 One unique thing about this game (compared to basically every other game) is that you can either play with yourself, or you can
 battle a computer. There is a very miniscule chance the computer will not be able to find a word, but for the most part, you're 
@@ -83,10 +89,14 @@ If you selected a word whose length is greater than 15, the game nicely asks if 
 length. You can take this moment to rethink your decision; but if you're feeling adventurous and a little bit brave, there's a
 fat chance the game will either keep giving you the same set of words, or it will fall into an infinite loop.
 
+<img width="452" height="386" alt="image" src="https://github.com/user-attachments/assets/8f80801a-00a3-485a-b8a4-aa08870f7ff3" />
+
 ### 4. Hangman
 
 Hangman is a remorseless simulation of a life-or-death situation where you try to find the correct word by guessing individual
 letters.
+
+<img width="762" height="480" alt="image" src="https://github.com/user-attachments/assets/264ae33d-d587-489b-a4a9-50ba783cef8b" />
 
 By design of the hangman, you get a maximum of 6 guesses that corresponds to each segment of the man. For every wrong guess,
 one of his body parts appears on the display.
@@ -94,6 +104,8 @@ one of his body parts appears on the display.
 If you get lucky, you will see him standing on the ground, arms raising above his head, celebrating, for you have saved his
 life. Otherwise, you will be witnessing painful scene of a man whose identity you may never know leave this plane of existence
 right before your eyes.
+
+<img width="342" height="132" alt="image" src="https://github.com/user-attachments/assets/8ac89f6c-f7d1-42f6-a511-48ace29a488a" />
 
 You can also `/giveup` and leave half a man on the hanger and act like you never created a sentient being.
 
@@ -112,6 +124,8 @@ words, and seed. The default option will be 4 rows, 4 columns, max score 100, in
 
 When you end the game, you can actually see the game seed, and it will be saved in the game history. You can use this seed to
 regenerate the grid.
+
+<img width="354" height="460" alt="image" src="https://github.com/user-attachments/assets/846c5fc2-73e5-474b-83c0-86d8595ece97" />
 
 One more thing: considering the only way to do anything is by typing strings of characters and command into the input field,
 the user experience is a little bit janky. You have to type in the row-column index of a block of letter to "select" it.
@@ -142,6 +156,8 @@ LC's implementation has two modes you can choose:
 Also, this game uses a script to find all possible words in the dictionary, so you'll be able to see how many words you can
 make. The game ends when you do find all of them.
 
+<img width="522" height="476" alt="image" src="https://github.com/user-attachments/assets/af96ad59-3ea2-4192-81c2-34bf29e90ccb" />
+
 ### 8. Unscramble
 
 Hopefully the name is self-explanatory. You get a word but it gets shuffled to hell, and you have to guess what the word is.
@@ -152,6 +168,8 @@ Lexophile's Collection takes a step further and gives you three levels of diffic
 - Mess: There's a third one joining
 
 You can only end the game once you've managed to guess all the words (or you can just use the commands).
+
+<img width="564" height="504" alt="image" src="https://github.com/user-attachments/assets/8e3e19a3-5813-4a1a-8df1-b102791b038a" />
 
 ### 9. Traceback
 
@@ -179,6 +197,8 @@ You get a total of (wordLength + 6) guesses before the game ends. Due to the nat
 word that exists in the dictionary, so instead of not allowing you to continue, the game simply does this:
 - Takes away one guess if you make a word that doesn't exist
 - Gives you one guess if you manage to get one letter in its correct spot
+
+<img width="924" height="652" alt="image" src="https://github.com/user-attachments/assets/1ce580d0-e424-4bbf-bde4-97197c7edfcf" />
 
 ## Dictionaries
 
