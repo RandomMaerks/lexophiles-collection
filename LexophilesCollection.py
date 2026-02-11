@@ -18,7 +18,7 @@ def chooseDict():
         "[2] words_alpha.txt (Composed by dwyl, contains 370K words)\n"
         "[3] wordlist.txt (Composed by Florida State University, contains 300K words)\n"
         "[4] CSW21 - Collins Scrabble Words (Contains 219K words)\n"
-        "[5] english.txt (Composed by Free Scrabble Dictionary, contains 145K words)\n"
+        "[5] twl06.txt (Composed by Free Scrabble Dictionary, contains 177K words)\n"
         "[6] english_3000.txt (Composed by EF, contains 3K most common English words)"
         )
 
@@ -26,7 +26,7 @@ def chooseDict():
         "dictionaries/wlist_match1.txt",
         "dictionaries/words_alpha.txt",
         "dictionaries/wordlist.txt",
-        "dictionaries/csw21.txt",
+        "dictionaries/twl06.txt",
         "dictionaries/english.txt",
         "dictionaries/english_3000.txt"
         ]

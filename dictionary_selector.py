@@ -3,7 +3,7 @@ dictionaryRef = [
     "dictionaries/wlist_match1.txt",
     "dictionaries/words_alpha.txt",
     "dictionaries/wordlist.txt",
-    "dictionaries/csw21.txt",
+    "dictionaries/twl06.txt",
     "dictionaries/english.txt",
     "dictionaries/english_3000.txt"
     ]
