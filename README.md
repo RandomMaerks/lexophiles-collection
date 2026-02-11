@@ -214,38 +214,32 @@ These are the dictionaries / word lists I've included for the game:
 - Author: Keith Vertanen
 - Words: 1516998
 - Link: https://www.keithv.com/software/wlist/
-- License: Unknown
 
 ### `words_alpha.txt`
 - Author: dwyl
 - Words: 370105
 - Link: https://github.com/dwyl/english-words
-- License: [Unlicense](https://github.com/dwyl/english-words?tab=Unlicense-1-ov-file#readme)
 
 ### `wordlist.txt`
 - Author: Florida State University
 - Words: 300394
 - Link: i forgot
-- License: i cant know
 
 ### Collins Scrabble Words (CSW21) / `csw21.txt`
 - Author: Collins
 - Words: 279077
 - Link (unofficial): https://www.reddit.com/r/scrabble/comments/my5tie/the_419_words_erased_from_csw/
 https://dn710002.ca.archive.org/0/items/csw21/CSW21.txt
-- License: Unknown
 
 ### `twl06.txt`
 - Author: Free Scrabble Dictionary
 - Words: 178691
 - Link: https://www.freescrabbledictionary.com/twl06/download/twl06.txt
-- License: Unknown
 
 ### `english_3000.txt`
 - Author: EF
 - Words: 3000
 - Link: https://www.ef.com/wwen/english-resources/english-vocabulary/top-3000-words/
-- License: Unknown
 
 ## Contribution
 
