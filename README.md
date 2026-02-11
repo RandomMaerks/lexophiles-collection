@@ -4,6 +4,10 @@ A simple collection of word games you can play on whatever terminal or console y
 
 Largely coded in Python (the only language I know to an intermediate level).
 
+## How to run
+
+Download everything in the source code (pls) and run the `LexophilesCollection.py` file. Simple as that!
+
 ## Functionality
 
 Upon running the script, you will be met with the Menu screen, which will be your main navigation point.
@@ -242,3 +246,7 @@ https://dn710002.ca.archive.org/0/items/csw21/CSW21.txt
 - Words: 3000
 - Link: https://www.ef.com/wwen/english-resources/english-vocabulary/top-3000-words/
 - License: Unknown
+
+## Contribution
+
+If you find any bugs, have any game suggestions, or want to improve some code, please make an issue or discussion and let me know!
