@@ -180,7 +180,7 @@ You can only end the game once you've managed to guess all the words (or you can
 Traceback is a combination of two games: Word ladder & Wordle.
 
 In Word ladder, (I think) you're given a start word and an end word. You try to turn one into the other by slowly replacing one
-letter at a time, ensuring the word you make is a valid word. Wordle is explained above.
+letter at a time, ensuring every word you make is a valid word. Wordle is explained above.
 
 Traceback combines these two games by hiding the end word, and you're supposed to guess based on the indicator for each letter.
 If a letter doesn't belong, it's gray. If it exists, it's yellow. If it's in the correct spot as well, it's green.
