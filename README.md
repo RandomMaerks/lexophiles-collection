@@ -191,7 +191,7 @@ myself before I realise it's a combination of these two games.
 LC's implementation gives you four levels of difficulty:
 - Easy: The words are 4 letters long, and you get 2 valid letters in their correct spot
 - Medium: The words are 5 letters long, and you get 1 to 2 valid letters in their correct spot
-- Hard: The words are 6 letters long, and you get 1 valid word MADE SURE TO NOT BE IN ITS CORRECT SPOT
+- Hard: The words are 6 letters long, and you get 1 valid letter MADE SURE NOT TO BE IN ITS CORRECT SPOT
 - F*cked: The word length can be 7 to 9 letters, and you get NOTHING
 
 To make a change, you type in an index-replacement combo. For example, you can turn HOLE into POLE by typing 1P (1: letter index,
