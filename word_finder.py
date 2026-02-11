@@ -1,6 +1,5 @@
 from itertools import permutations
 import random
-import dictionary_selector
 
 def wordFinder(wordList, wordLength, order, unique, restriction, pattern, excluded):
     # list[strings], list[index, int, int], index, index, list [string x3], list[string x 4], list[strings]
@@ -110,3 +109,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
