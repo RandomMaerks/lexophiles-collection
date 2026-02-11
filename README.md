@@ -72,7 +72,7 @@ with the correct letter will also take away one try.
 <img width="746" height="422" alt="image" src="https://github.com/user-attachments/assets/2d7fda2c-6388-4f6d-b308-53a3ae5d9472" />
 
 One unique thing about this game (compared to basically every other game) is that you can either play with yourself, or you can
-battle a computer. There is a very miniscule chance the computer will not be able to find a word, but for the most part, you're 
+battle a computer. There is a very miniscule chance the computer will not be able to find a word, so for the most part, you're 
 guaranteed to lose at some point.
 
 ### 3. Wordle
@@ -106,7 +106,7 @@ By design of the hangman, you get a maximum of 6 guesses that corresponds to eac
 one of his body parts appears on the display.
 
 If you get lucky, you will see him standing on the ground, arms raising above his head, celebrating, for you have saved his
-life. Otherwise, you will be witnessing painful scene of a man whose identity you may never know leave this plane of existence
+life. Otherwise, you will be witnessing the painful scene of a man whose identity you may never know leave this plane of existence
 right before your eyes.
 
 <img width="342" height="132" alt="image" src="https://github.com/user-attachments/assets/8ac89f6c-f7d1-42f6-a511-48ace29a488a" />
