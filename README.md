@@ -152,6 +152,8 @@ To select a word, you must type in two row-column indexes, with each pair of row
 Sometimes, you might find a word that exists in the selected dictionary but is not a part of the intended word list. You'll actually
 get to keep that word as a bonus.
 
+<img width="310" height="520" alt="image" src="https://github.com/user-attachments/assets/f7d0e629-dd75-48c9-980c-0efa60fe389c" />
+
 ### 7. Combiner
 
 In this game, you're given a set of letters with somewhere from 3 to 9 letters. You can make a word by picking out a few letters
