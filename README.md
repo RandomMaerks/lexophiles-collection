@@ -140,7 +140,17 @@ Luckily, the grid display will show you the indexes, so you don't have to think 
 Sleuth gives you a grid of random letters and a couple of words that you need to find inside the grid. Unlike Boggle, the words
 are placed linearly, though they can be placed horizontally, vertically, and diagonally.
 
-The game has not been implemented into the code yet, so I don't have much to say about this game.
+LC's implementation currently only has 4 directions: horizontal, vertical, diagonal up, and diagonal down. The words are never
+placed in reverse order.
+
+Like Boggle, there are a few filters you can use to get a specific board, but I would highly recommend against it since there is
+a fat chance the game will fall into an infinite loop.
+
+To select a word, you must type in two row-column indexes, with each pair of row and column number joined by a dot `.`. For example:
+`1.10 5.10` selects vertically from row 1 to row 5 of column 10; `4.6 6.4` selects diagonally.
+
+Sometimes, you might find a word that exists in the selected dictionary but is not a part of the intended word list. You'll actually
+get to keep that word as a bonus.
 
 ### 7. Combiner
 
