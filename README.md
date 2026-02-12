@@ -28,7 +28,7 @@ append your result to the game history (saved in the `gameHistory.txt` file). Do
 
 ## Word games
 
-There are **9 game concepts**, with **8** of them actually implemented into the code:
+There are **9 game concepts**:
 
 | Mode | Game name | Description |
 | :---: | --- | --- |
