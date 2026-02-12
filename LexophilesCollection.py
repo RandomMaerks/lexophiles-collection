@@ -710,7 +710,7 @@ class grid():
         self.history.append(word)
         self.wordScore.append(score)
         self.score += score
-        return f"Found {word} ({score}) ✔"
+        return f"Found {word} ({score}) ✓"
 
 def boggle():
     print(
@@ -766,7 +766,7 @@ def boggle():
             break
         message = boggleGrid.getWord(userInput.split(" "))
         print(message)
-        if "✔" not in message: continue
+        if "✓" not in message: continue
 
         if boggleGrid.score >= maxScore:
             print("You've reached the max score!")
@@ -1059,7 +1059,7 @@ def sleuth():
 
         foundWords.append(answer)
         indexInKeywords = keywords.index(answer)
-        foundIndicator[indexInKeywords] = "✔"
+        foundIndicator[indexInKeywords] = "✓"
 
         if userInput == "/giveup":
             break
