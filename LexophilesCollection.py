@@ -539,14 +539,15 @@ def hangman():
         
         print("* Enter a letter:")
         while True:
-            answer = str(input("> ")).upper()
+            answer = str(input("> "))
             if not answer: continue
             if answer == "/exit":
                 print("You've ended the game prematurely!")
-                break
+                menu()
             elif answer == "/giveup":
                 print("You stopped the game!")
                 break
+            answer = answer.upper()
             if len(answer) != 1 or answer not in toUse:
                 print("That's not a letter! Try again.")
                 continue
@@ -861,7 +862,7 @@ def sleuth():
     foundIndicator = [" " for _ in keywords]
     
     maxLength = max([len(keyword) for keyword in keywords])
-    if filters[1] == -1: rows = 10 if maxLength <= 9 else maxLength+1
+    if filters[1] == -1: rows = 10 if maxLength <= 8 else maxLength+2
     else: rows = filters[1]
     cols = rows if filters[2] == -1 else filters[2]
     
@@ -1057,18 +1058,16 @@ def sleuth():
             print(f"Found '{answer}'!")
             break
 
+        if userInput == "/giveup":
+            break
+
         foundWords.append(answer)
         indexInKeywords = keywords.index(answer)
         foundIndicator[indexInKeywords] = "✓"
 
-        if userInput == "/giveup":
-            break
-
         if all(keyword in foundWords for keyword in keywords):
             print("Nice work! You found all the words!")
             break
-
-    
 
     printGrid(bareGrid)
     print(
@@ -1387,7 +1386,7 @@ def traceback():
         "Difficulties: [1] Easy (4 letters, min 2 correct)\n"
         "              [2] Medium (5 letters, 1-2 correct)\n"
         "              [3] Hard (6 letters, 1 valid)\n"
-        "              [4] Fucked (7-9, guaranteed no valid)\n"
+        "              [4] Outrageous (7-9, guaranteed no valid)\n"
         )
     print("* Choose difficulty (int): ")
     difficulty = ""
@@ -1412,8 +1411,8 @@ def traceback():
             print("\n--- DIFFICULTY : HARD ---\n")
             difficulty = "Hard"
         elif difficultySelection == 4:
-            print("\n--- DIFFICULTY : FUCKED ---\n")
-            difficulty = "Fucked"
+            print("\n--- DIFFICULTY : OUTRAGEOUS ---\n")
+            difficulty = "Outrageous"
         break
 
     while True:
@@ -1424,7 +1423,7 @@ def traceback():
             continue
         elif difficulty == "Hard" and len(keyword) != 6:
             continue
-        elif difficulty == "Fucked" and not len(keyword) not in range(7, 10):
+        elif difficulty == "Outrageous" and not len(keyword) not in range(7, 10):
             continue
         break
 
@@ -1462,7 +1461,7 @@ def traceback():
             continue
         elif difficulty == "Hard" and checker.count("?") != 1 and checker.count("!") != 0:
             continue
-        elif difficulty == "Fucked" and checker.count("?") != 0 and checker.count("!") != 0:
+        elif difficulty == "Outrageous" and checker.count("?") != 0 and checker.count("!") != 0:
             continue
         break
     
@@ -1513,7 +1512,7 @@ def traceback():
                 ])
             break
 
-        if answer == "/giveup":
+        if userInput == "/giveup":
             break
         
         for letter in range(0, wordLength):
