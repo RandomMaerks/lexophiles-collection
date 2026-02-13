@@ -4,6 +4,10 @@ A simple collection of word games you can play on whatever terminal or console y
 
 Largely coded in Python (the only language I know to an intermediate level).
 
+Small warning: The game occasionally uses box drawing characters which may not always be supported by a monospaced font, so make
+sure you use one that does. I use [Iosevka](https://github.com/be5invis/Iosevka) (SS14, Extended) and I found 
+[Cascadia Code](https://github.com/microsoft/cascadia-code) which also support these characters.
+
 ## How to run
 
 Download everything in the source code (pls) and run the `LexophilesCollection.py` file. Simple as that!
@@ -12,7 +16,7 @@ Download everything in the source code (pls) and run the `LexophilesCollection.p
 
 Upon running the script, you will be met with the Menu screen, which will be your main navigation point.
 
-<img width="918" height="358" alt="image" src="https://github.com/user-attachments/assets/4e1ee399-b9fc-434c-be76-295dfb276bb6" />
+<img width="823" height="317" alt="image" src="https://github.com/user-attachments/assets/a5db9698-e0bd-41c3-b0a0-b5edea0ddfe7" />
 
 There are currently **11 modes**:
 
@@ -44,24 +48,26 @@ There are **9 game concepts**:
 
 ### 1. Solobomber
 
-In this game, you're given a combo of letters which is called a "prompt".
-
-To make a valid word, it must satisfy the conditions:
-- The word contains the prompt, whether at the start, at the end or among other letters
-- The word is unique, meaning you cannot use it multiple times
-- The word exists in the selected dictionary
+In a game of Solobomber, you're given a series of letter combinations called "prompts". For each prompt, you must create a word
+that can satisfy the following conditions:
+- The word must contain the prompt, whether at the start, at the end or among other letters
+- The word must be unique, meaning you cannot use it multiple times
+- The word must exist in the selected dictionary
 
 Additionally, you're given a maximum of 3 tries. You lose one try if you reuse a word.
 
-<img width="780" height="478" alt="image" src="https://github.com/user-attachments/assets/49c25122-5dd8-4de8-8492-8fc17a9350cd" />
-
 The game simply ends when you run out of tries or you activate a command.
+
+<img width="684" height="419" alt="image" src="https://github.com/user-attachments/assets/b20e45aa-e5d2-43db-9aa7-b872a621b5e4" />
+
+Solobomber is inspired by JKLM's BombParty and OMG's Word Bomb from Roblox.
 
 ### 2. Word Chain
 
-In this game, you take the last letter of a given word or your last guess, and you make a new word starting with that letter.
+Word Chain is a game where you create a series of words by connecting the last letter of a previous word to the first letter of
+the next word to make a "chain".
 
-The conditions are similar to that of Solobomber:
+The conditions for making a word are similar to that of Solobomber:
 - The new word must start with the last letter of the previous word
 - The word is unique
 - The word exists in the selected dictionary
@@ -69,11 +75,11 @@ The conditions are similar to that of Solobomber:
 And, just like Solobomber, you have a maximum of 3 tries. However, aside from reusing a word, making a word that doesn't start 
 with the correct letter will also take away one try.
 
-<img width="746" height="422" alt="image" src="https://github.com/user-attachments/assets/2d7fda2c-6388-4f6d-b308-53a3ae5d9472" />
-
 One unique thing about this game (compared to basically every other game) is that you can either play with yourself, or you can
 battle a computer. There is a very miniscule chance the computer will not be able to find a word, so for the most part, you're 
 guaranteed to lose at some point.
+
+<img width="667" height="458" alt="image" src="https://github.com/user-attachments/assets/c06876f0-cd87-4a7f-9496-24d7f357e3b8" />
 
 ### 3. Wordle
 
@@ -93,14 +99,14 @@ If you selected a word whose length is greater than 15, the game nicely asks if 
 length. You can take this moment to rethink your decision; but if you're feeling adventurous and a little bit brave, there's a
 fat chance the game will either keep giving you the same set of words, or it will fall into an infinite loop.
 
-<img width="452" height="386" alt="image" src="https://github.com/user-attachments/assets/8f80801a-00a3-485a-b8a4-aa08870f7ff3" />
+<img width="387" height="343" alt="image" src="https://github.com/user-attachments/assets/051ddef2-53f8-4bfe-bbfa-3e8595ed3542" />
 
 ### 4. Hangman
 
 Hangman is a remorseless simulation of a life-or-death situation where you try to find the correct word by guessing individual
 letters.
 
-<img width="762" height="480" alt="image" src="https://github.com/user-attachments/assets/264ae33d-d587-489b-a4a9-50ba783cef8b" />
+<img width="672" height="422" alt="image" src="https://github.com/user-attachments/assets/eded86f4-3758-40fd-89f8-ee0cd417b9ba" />
 
 By design of the hangman, you get a maximum of 6 guesses that corresponds to each segment of the man. For every wrong guess,
 one of his body parts appears on the display.
@@ -120,8 +126,9 @@ words by connecting some letters in the grid together.
 
 However, you have to follow these specific rules:
 - When you select a letter, you have to continue with the letters that surround it. For example, you can't start with a
-letter on the top right and jump all the way to the bottom left to connect the letters.
-- You cannot select the same block of letter more than once.
+letter on the top right and jump all the way to the bottom left to connect the letters
+- You cannot select the same block of letter more than once
+- You cannot make a word with only 1 or 2 letters
 
 LC's implementation gives you a set of filters at the start of each game: Number of rows, columns, max score, max number of
 words, and seed. The default option will be 4 rows, 4 columns, max score 100, infinite words, and no set seed.
@@ -129,11 +136,11 @@ words, and seed. The default option will be 4 rows, 4 columns, max score 100, in
 When you end the game, you can actually see the game seed, and it will be saved in the game history. You can use this seed to
 regenerate the grid.
 
-<img width="354" height="460" alt="image" src="https://github.com/user-attachments/assets/846c5fc2-73e5-474b-83c0-86d8595ece97" />
-
 One more thing: considering the only way to do anything is by typing strings of characters and command into the input field,
 the user experience is a little bit janky. You have to type in the row-column index of a block of letter to "select" it.
 Luckily, the grid display will show you the indexes, so you don't have to think much about them.
+
+<img width="650" height="331" alt="image" src="https://github.com/user-attachments/assets/2e050d08-5ab5-4081-8171-5d5776edb097" />
 
 ### 6. Sleuth
 
@@ -152,7 +159,7 @@ To select a word, you must type in two row-column indexes, with each pair of row
 Sometimes, you might find a word that exists in the selected dictionary but is not a part of the intended word list. You'll actually
 get to keep that word as a bonus.
 
-<img width="310" height="520" alt="image" src="https://github.com/user-attachments/assets/f7d0e629-dd75-48c9-980c-0efa60fe389c" />
+<img width="442" height="608" alt="image" src="https://github.com/user-attachments/assets/d5139537-7378-4e30-9d0f-04cec4fccf1b" />
 
 ### 7. Combiner
 
@@ -172,7 +179,7 @@ LC's implementation has two modes you can choose:
 Also, this game uses a script to find all possible words in the dictionary, so you'll be able to see how many words you can
 make. The game ends when you do find all of them.
 
-<img width="522" height="476" alt="image" src="https://github.com/user-attachments/assets/af96ad59-3ea2-4192-81c2-34bf29e90ccb" />
+<img width="443" height="231" alt="image" src="https://github.com/user-attachments/assets/e21bbdf9-b37a-438f-9f2b-4e882f5c22fb" />
 
 ### 8. Unscramble
 
@@ -185,7 +192,7 @@ Lexophile's Collection takes a step further and gives you three levels of diffic
 
 You can only end the game once you've managed to guess all the words (or you can just use the commands).
 
-<img width="564" height="504" alt="image" src="https://github.com/user-attachments/assets/8e3e19a3-5813-4a1a-8df1-b102791b038a" />
+<img width="506" height="523" alt="image" src="https://github.com/user-attachments/assets/c9aef867-d671-41f4-8c9f-16d4ae3868e7" />
 
 ### 9. Traceback
 
@@ -214,7 +221,7 @@ word that exists in the dictionary, so instead of not allowing you to continue, 
 - Takes away one guess if you make a word that doesn't exist
 - Gives you one guess if you manage to get one letter in its correct spot
 
-<img width="924" height="652" alt="image" src="https://github.com/user-attachments/assets/1ce580d0-e424-4bbf-bde4-97197c7edfcf" />
+<img width="799" height="550" alt="image" src="https://github.com/user-attachments/assets/2b351335-e458-4815-b09d-72dcb1a58ba4" />
 
 ## Dictionaries
 
