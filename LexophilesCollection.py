@@ -61,9 +61,9 @@ def menu():
         "--------\n"
         "Options: [1] History: Display game history\n"
         "         [2] Dictionary: Choose a dictionary\n"
-        "Games: [3] Solobomber: Make a word using a letter combo (inspo: BombParty (JKLM), Word Bomb (OMG))\n"
-        "       [4] Word Chain: Make a unique word using the last letter of the previous guess\n"
-        "       [5] Wordle: NYT's Wordle with custom options\n"
+        "Games: [3] Solobomber: Make a word using a letter combo\n"
+        "       [4] Word Chain: Make a word starting with the last letter of the previous guess\n"
+        "       [5] Wordle: NYT's Wordle with custom word lengths\n"
         "       [6] Hangman: Guess the correct letters of a word\n"
         "       [7] Boggle: Find as many words as possible from a grid of letters\n"
         "       [8] Sleuth: Find all given words hidden inside a grid of letters\n"
@@ -155,10 +155,11 @@ def solobomber():
             elif answer == "/giveup":
                 print("You stopped the game!")
                 break
+
             if combo not in answer:
                 print(f"'{answer}' does not include '{combo}'! Try again.")
                 continue
-            elif answer not in wordList:
+            if answer not in wordList:
                 print(f"'{answer}' does not exist in the selected dictionary! Try again.")
                 continue
             break
@@ -254,6 +255,7 @@ def wordChain():
             elif answer == "/giveup":
                 print("You stopped the game!")
                 break
+            
             if answer not in wordList:
                 print(f"'{answer}' does not exist in the selected dictionary! Try again.")
                 continue
@@ -398,10 +400,11 @@ def wordle():
             elif answer == "/giveup":
                 print("You stopped the game!")
                 break
+
             if len(answer) != wordLength:
                 print("Invalid word! Try again.")
                 continue
-            elif answer not in wordList:
+            if answer not in wordList:
                 print(f"'{answer}' is not in the selected dictionary! Try again")
                 continue
             break
@@ -548,10 +551,11 @@ def hangman():
                 print("You stopped the game!")
                 break
             answer = answer.upper()
+
             if len(answer) != 1 or answer not in toUse:
                 print("That's not a letter! Try again.")
                 continue
-            elif answer in letterUsed:
+            if answer in letterUsed:
                 print("That letter has already been used! Try again.")
                 continue
             break
@@ -671,7 +675,7 @@ class grid():
     def getWord(self, userInput):
         if any(userInput.count(x) != 1 for x in userInput):
             return "Some of your indexes are repeated! Try again."
-        elif len(userInput) < 3:
+        if len(userInput) < 3:
             return "Not enough indexes! Try again."
 
         indices = []
@@ -705,7 +709,7 @@ class grid():
             
         if word in self.history:
             return f"{word} ({score}) has already been used! Try again."
-        elif word.lower() not in self.wordList:
+        if word.lower() not in self.wordList:
             return f"{word} (0) does not exist in the selected dictionary! Try again."
         
         self.history.append(word)
@@ -772,7 +776,7 @@ def boggle():
         if boggleGrid.score >= maxScore:
             print("You've reached the max score!")
             break
-        elif len(boggleGrid.history) >= maxWords:
+        if len(boggleGrid.history) >= maxWords:
             print("You've played all {maxWords} words!")
             break
 
@@ -854,7 +858,7 @@ def sleuth():
         keyword = random.choice(wordList).upper()
         if keyword in keywords:
             continue
-        elif len(keyword) < minLength or len(keyword) > maxLength:
+        if len(keyword) < minLength or len(keyword) > maxLength:
             continue
         keywords.append(keyword)
         if len(keywords) == words:
@@ -1030,14 +1034,14 @@ def sleuth():
             if colIndexStart > colIndexEnd:
                 print("For the time being, you cannot select colStart > colEnd. Sorry! Try again.")
                 continue
-            elif rowIndexStart != rowIndexEnd and colIndexStart != colIndexEnd:
+            if rowIndexStart != rowIndexEnd and colIndexStart != colIndexEnd:
                 if abs(rowIndexEnd - rowIndexStart) != abs(colIndexStart - colIndexEnd):
                     print("Your indexes are incorrect! Try again.")
                     continue
-            elif rowIndexStart not in range(0, rows) or rowIndexEnd not in range(0, rows):
+            if rowIndexStart not in range(0, rows) or rowIndexEnd not in range(0, rows):
                 print("Your row index is out of bound! Try again.")
                 continue
-            elif colIndexStart not in range(0, cols) or colIndexEnd not in range(0, cols):
+            if colIndexStart not in range(0, cols) or colIndexEnd not in range(0, cols):
                 print("You column index is out of bound! Try again.")
                 continue
                 
@@ -1046,12 +1050,12 @@ def sleuth():
             if answer in foundWords:
                 print(f"'{answer}' has already been found! Try again.")
                 continue
-            elif answer not in keywords and answer.lower() in wordList:
+            if answer not in keywords and answer.lower() in wordList:
                 print(f"'{answer}' is not meant to be found, but it is a valid word!")
                 keywords.append(answer)
                 foundIndicator.append(" ")
                 break
-            elif answer not in keywords and answer not in wordList:
+            if answer not in keywords and answer not in wordList:
                 print(f"'{answer}' is not one of the words to find! Try again.")
                 continue
 
@@ -1210,15 +1214,16 @@ def combiner():
             elif answer == "/shuffle":
                 break
             answer = answer.upper()
+
             if any(answer.count(i) not in range(0, letters.count(i)+1) for i in answer):
                 print(f"'{answer}' has an invalid letter! Try again.")
                 continue
-            elif len(answer) < 3:
+            if len(answer) < 3:
                 print(f"Your word was too short! Try again.")
-            elif answer not in allPossibleWords:
+            if answer not in allPossibleWords:
                 print(f"'{answer}' does not exist in the selected dictionary! Try again.")
                 continue
-            elif answer in answerUsed:
+            if answer in answerUsed:
                 print(f"'{answer}' has already been used! Try again.")
                 continue
             break
@@ -1332,6 +1337,7 @@ def unscramble():
                 print("You stopped the game!")
                 break
             answer = answer.upper()
+            
             if len(answer) < 4:
                 print("Your word is too short (minimum length: 4)")
                 continue
