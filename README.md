@@ -6,7 +6,7 @@ Largely coded in Python (the only language I know to an intermediate level).
 
 Small warning: The game occasionally uses box drawing characters which may not always be supported by a monospaced font, so make
 sure you use one that does. I use [Iosevka](https://github.com/be5invis/Iosevka) (SS14, Extended) and I found 
-[Cascadia Code](https://github.com/microsoft/cascadia-code) which also support these characters.
+[Cascadia Code](https://github.com/microsoft/cascadia-code) which also supports these characters.
 
 ## How to run
 
