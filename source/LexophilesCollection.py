@@ -1147,27 +1147,29 @@ def combiner():
         letters = random.choices(alphabet, weights, k=random.randrange(3, 10))
 
     allPossibleWords = wordFinder(
-        wordList, [0, 3, len(letters)], 0, 0, ["", ''.join(letters).lower(), ""], ["", "", "", ""], [""]
-        )[0]
-    allPossibleWords = allPossibleWords.upper().split() if allPossibleWords != "No words found\n\n" else []
+        wordList,
+        wordLength = [3, len(letters)],
+        restriction = [None, ''.join(letters).lower(), None],
+        )
+    allPossibleWords = [word.upper() for word in allPossibleWords]
 
-    baseGrid = [
+    letterAmount = len(letters)
+    placement = {
+        3: [1, 6, 8],
+        4: [1, 3, 5, 7],
+        5: [0, 2, 3, 5, 7],
+        6: [0, 2, 3, 5, 6, 8],
+        7: [0, 1, 2, 3, 5, 7, 8],
+        8: [0, 1, 2, 3, 5, 6, 7, 8],
+        9: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+    }
+
+    grid = [
         " ", " ", " ",
         " ", " ", " ",
         " ", " ", " ",
         ]
-
-    letterAmount = len(letters)
-    if letterAmount == 3: placement = [1, 6, 8]
-    elif letterAmount == 4: placement = [1, 3, 5, 7]
-    elif letterAmount == 5: placement = [0, 2, 3, 5, 7]
-    elif letterAmount == 6: placement = [0, 2, 3, 5, 6, 8]
-    elif letterAmount == 7: placement = [0, 1, 2, 3, 5, 7, 8]
-    elif letterAmount == 8: placement = [0, 1, 2, 3, 5, 6, 7, 8]
-    elif letterAmount == 9: placement = [0, 1, 2, 3, 4, 5, 6, 7, 8]
-
-    grid = baseGrid
-    for letter, spot in zip(letters, placement):
+    for letter, spot in zip(letters, placement[letterAmount]):
         grid[spot] = letter
 
     answerUsed = []
@@ -1183,24 +1185,21 @@ def combiner():
         wordIndex = 0
         display = ["Used words:  "]
         maxLength = 0
+
         for word in answerUsed:
             if maxLength < len(word): maxLength = len(word)
+
         for wordIndex, word in enumerate(answerUsed):
-            space = ''.join([" " for x in range(len(word), maxLength)])
+            space = " " * (maxLength - len(word))
             if wordIndex % 4 == 3: display.append(f"{answerUsed[wordIndex]}{space}  \n             ")
             else: display.append(f"{answerUsed[wordIndex]}{space}  ")
         print(f"{''.join(display)}")
 
-        display = ["\n"]
-        leftSide = ["⎡", "⎢", "⎣"]
-        rightSide = ["⎤", "⎥", "⎦"]
-        for index, spot in enumerate(grid):
-            if index in [0, 3, 6]:
-                display.append(leftSide[int(index/3)])
-            display.append(f"  {spot}  ")
-            if index in [2, 5, 8]:
-                display.append(rightSide[int((index-2)/3)] + "\n")
-        print(''.join(display))            
+        print(
+            f"⎡ {grid[0]}  {grid[1]}  {grid[2]} ⎤\n"
+            f"⎢ {grid[3]}  {grid[4]}  {grid[5]} ⎥\n"
+            f"⎣ {grid[6]}  {grid[7]}  {grid[8]} ⎦\n"
+            )
         
         while True:
             answer = str(input("> "))

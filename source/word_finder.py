@@ -1,38 +1,48 @@
 from itertools import permutations
 import random
 
-def wordFinder(wordList, wordLength, order, unique, restriction, pattern, excluded):
-    # list[strings], list[index, int, int], index, index, list [string x3], list[string x 4], list[strings]
+def wordFinder(
+    wordList,
+    longest = False,
+    wordLength = [None, None],
+    order = None,
+    unique = None,
+    restriction = [None, None, None],
+    pattern = [None, None, None, None],
+    excluded = []
+    ):
+
     if len(wordList) < 1:
         return ["No dictionary selected, cannot find words\n\n", 0]
     
     foundWords = []
     longestWords = [""]
+    
     for word in wordList:
-        # Word length
-        if wordLength[1] != -1 and len(word) < wordLength[1]:
+        # Word length: min, max
+        if wordLength[0] is not None and len(word) < wordLength[0]:
             continue
-        if wordLength[2] != -1 and len(word) > wordLength[2]:
+        if wordLength[1] is not None and len(word) > wordLength[1]:
             continue
         
-        # Alphabetical order
-        if order != 0:
+        # Alphabetical order: None = no order, 'reversed' = reversed order, anything else = default
+        if order:
             alphabet = "abcdefghijklmnopqrstuvwxyz"
-            if order == 2: alphabet = ''.join([alphabet[25-i] for i, x in enumerate(alphabet)])
+            if order == "reversed": alphabet = ''.join([alphabet[25-i] for i, x in enumerate(alphabet)])
             ref = alphabet
-            inAlpOrder = True
+            inOrder = True
             for char in word:
                 if char in ref:
                     index = ref.find(char)
                     ref = ref[index:]
                 else:
-                    inAlpOrder = False
+                    inOrder = False
                     break
-            if inAlpOrder != True:
+            if inOrder != True:
                 continue
         
-        # Unique / duplicate
-        if unique == 1:
+        # Unique / duplicate: None = skipped
+        if unique == "unique":
             isUnique = True
             for charIndex, char in enumerate(word):
                 removed = word[:charIndex] + word[charIndex+1:]
@@ -41,7 +51,7 @@ def wordFinder(wordList, wordLength, order, unique, restriction, pattern, exclud
                     break
             if isUnique != True:
                 continue
-        if unique == 2:
+        if unique == "duplicate":
             isDuplicate = True
             for charIndex, char in enumerate(word):
                 removed = word[:charIndex] + word[charIndex+1:]
@@ -51,23 +61,22 @@ def wordFinder(wordList, wordLength, order, unique, restriction, pattern, exclud
             if isDuplicate != True:
                 continue
         
-        # Letter restriction
-        if restriction[0] != "" and not all(restriction[0][i] in word for i in range(len(restriction[0]))):
+        # Letter restriction: [include, only include, avoid]
+        if restriction[0] is not None and not all(restriction[0][i] in word for i in range(len(restriction[0]))):
             continue
-        #if restriction[1] != "" and not all(word[i] in restriction[1] for i in range(len(word))):
-        if restriction[1] != "" and any(word.count(i) not in range(0, restriction[1].count(i)+1) for i in word):
+        if restriction[1] is not None and any(word.count(i) not in range(0, restriction[1].count(i)+1) for i in word):
             continue
-        if restriction[2] != "" and not all(restriction[2][i] not in word for i in range(len(restriction[2]))):
+        if restriction[2] is not None and not all(restriction[2][i] not in word for i in range(len(restriction[2]))):
             continue
         
-        # Pattern
-        if pattern[0] != "" and not word.startswith(pattern[0]):
+        # Pattern: [start with, end with, contain, pattern]
+        if pattern[0] is not None and not word.startswith(pattern[0]):
             continue
-        if pattern[1] != "" and not word.endswith(pattern[1]):
+        if pattern[1] is not None and not word.endswith(pattern[1]):
             continue
-        if pattern[2] != "" and not pattern[2] in word:
+        if pattern[2] is not None and not pattern[2] in word:
             continue
-        if pattern[3] != "":
+        if pattern[3] is not None:
             if len(word) != len(pattern[3]):
                 continue
             if not all(pattern[3][i] == word[i] for i in range(len(pattern[3])) if pattern[3][i] != "."):
@@ -85,28 +94,7 @@ def wordFinder(wordList, wordLength, order, unique, restriction, pattern, exclud
         foundWords.append(word)
 
     if len(foundWords) > 0:
-        if wordLength[0] == 0: return ['\n'.join(foundWords) + "\n\n", len(foundWords)]
-        elif wordLength[0] == 1: return ['\n'.join(longestWords) + "\n\n", len(longestWords)]
+        if longest == True: return longestWords
+        else: return foundWords
     else:
-        return ["No words found\n\n", 0]
-    
-
-def randomiseWord(wordList, excluded):
-    # list [strings], list [strings]
-    if len(wordList) == 0:
-        return "No word in word list, cannot randomise\n\n"
-    if all(wordList[i] in excluded for i in range(len(wordList))):
-        return "All words in the word list are excluded, cannot randomise\n\n"
-    while True:
-        word = random.choice(wordList)
-        if word in excluded:
-            continue
-        else:
-            return word + "\n\n"
-
-def main():
-    pass
-
-if __name__ == "__main__":
-    main()
-
+        return []
