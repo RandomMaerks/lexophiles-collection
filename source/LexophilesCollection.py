@@ -43,11 +43,9 @@ def chooseDict():
             print("Not an option. Try again")
             continue
         
-        dictionary = open(dictDest[indexDict-1], "r", encoding="utf8")
+        with open(dictDest[indexDict-1], "r", encoding="utf8") as dictionary:
+            wordList = dictionary.read().split("\n")
         break
-            
-    wordList = dictionary.read().split("\n")
-    dictionary.close()
 
     menu()
 
@@ -130,8 +128,8 @@ def solobomber():
         "--------------\n"
         )
     
-    prompts = open("resources/prompts.txt", "r", encoding="utf8")
-    comboList = prompts.read().split("\n")
+    with open("resources/prompts.txt", "r", encoding="utf8") as prompts:
+        comboList = prompts.read().split("\n")
 
     wordsUsed = 0
     score = 0
@@ -749,8 +747,8 @@ def boggle():
         ]
     gridRows = filters[0]
     gridCols = filters[1]
-    maxScore = filters[2] if filters[2] != -1 else 2147283648
-    maxWords = filters[3] if filters[3] != -1 else 2147283648
+    maxScore = filters[2] if filters[2] != -1 else 2147283647
+    maxWords = filters[3] if filters[3] != -1 else 2147283647
     seed = filters[4] if filters[4] != -1 else random.getrandbits(64)
 
     boggleGrid = grid(wordList, gridRows, gridCols, seed)
