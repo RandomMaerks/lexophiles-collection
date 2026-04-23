@@ -659,7 +659,7 @@ class grid():
         for word in self.history:
             if maxLength < len(word): maxLength = len(word)
         for wordIndex, word in enumerate(self.history):
-            space = ''.join([" " for x in range(len(word), maxLength)])
+            space = " " * (maxLength - len(word))
             if wordIndex % 4 == 3: display.append(f"{self.history[wordIndex]}{space}  \n             ")
             else: display.append(f"{self.history[wordIndex]}{space}  ")
         print(f"{''.join(display)}")
@@ -879,14 +879,14 @@ def sleuth():
         print()
         maxLengthRow = max([len(str(row)) for row in range(1, rows+1)])
         maxLengthCol = max([len(str(col)) for col in range(1, cols+1)])
-        space1 = ''.join([' ' for _ in range(maxLengthRow)])
+        space1 = " " * (maxLengthRow)
         display = [f"{space1}  "]
         for col in range(cols):
-            space2 = ''.join([' ' for _ in range(len(str(col+1)), maxLengthCol)])
+            space2 = " " * (maxLengthCol - len(str(col+1)))
             display.append(f"{col+1}{space2} ")
         print(''.join(display))
         for row in range(rows):
-            space3 = ''.join([' ' for _ in range(len(str(row+1)), maxLengthRow)])
+            space3 = " " * (maxLengthRow - len(str(row+1)))
             print(f"{space3}{row+1}  " + "  ".join(thisGrid[row]))
         print()
     
@@ -1080,8 +1080,8 @@ def sleuth():
         )
 
     currentTime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    space = ''.join([' ' for _ in range(len(f"> Board: ({rows}×{cols}) "))])
     boardDisplay = [f"> Board: ({rows}×{cols}) "]
+    space = " " * (len(boardDisplay))
     for index, i in enumerate(grid):
         if index == 0: boardDisplay.append(f"{' '.join(i)}")
         else: boardDisplay.append(f"\n{space}{' '.join(i)}")
