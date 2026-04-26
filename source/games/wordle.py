@@ -39,7 +39,6 @@ def run(context):
     displayTitle()
 
     print(
-        "\n"
         "Mode: [1] Classic: Use NYT's past solutions, limiting word length to 5\n"
         "      [2] Custom: Use preselected dictionary, allowing custom word length\n"
         )
