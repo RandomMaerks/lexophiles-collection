@@ -18,7 +18,7 @@ py main.py
 
 Upon running the script, you will be met with the Menu screen, which will be your main navigation point.
 
-<img width="823" height="317" alt="image" src="https://github.com/user-attachments/assets/a5db9698-e0bd-41c3-b0a0-b5edea0ddfe7" />
+<img width="520" height="310" alt="image" src="https://github.com/user-attachments/assets/83cc41dd-9962-4ea4-9f88-a670fb585948" />
 
 There are currently **5 modes**:
 
