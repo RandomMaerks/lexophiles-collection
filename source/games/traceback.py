@@ -158,8 +158,12 @@ def run(context):
             try:
                 indexToReplace = int(userInput[0])-1
                 letterToReplace = str(userInput[1]).upper()
-            except Exception:
+            except UnboundLocalError:
                 print("Incorrect combo. Try again.")
+                continue
+            except ValueError:
+                print("Your index is incorrect. Try again.")
+                continue
 
             answer = answerList[-1]
             answer = ''.join([
@@ -209,7 +213,7 @@ def run(context):
         if answer == keyword:
             print("\nYou guessed the word!")
             break
-        elif guessNumber == totalGuesses + 1:
+        elif guessNumber >= totalGuesses + 1:
             print("\nYou're out of guesses!")
             break
         
