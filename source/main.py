@@ -153,7 +153,7 @@ def chooseDict(indexDict = None):
         "[1] wlist_match1.txt (Composed by Keith Vertanen, contains 1517K unfiltered words)\n"
         "[2] words_alpha.txt (Composed by dwyl, contains 370K unfiltered words)\n"
         "[3] CSW21 - Collins Scrabble Words (Contains 219K words)\n"
-        "[4] english_3000.txt (Composed by EF, contains 3K most common English words)"        )
+        "[4] english_3000.txt (Composed by EF, contains 3K most common English words)")
 
     print("* Choose dictionary (int):")
     while True:
