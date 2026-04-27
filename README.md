@@ -14,6 +14,8 @@ To run the game, download everything in the source code (pls), move the current 
 py main.py
 ```
 
+(Yes, you do need Python (>=3.9) installed for it to run.)
+
 Upon running the script, you will be met with the Menu screen, which will be your main navigation point.
 
 <img width="520" height="310" alt="image" src="https://github.com/user-attachments/assets/83cc41dd-9962-4ea4-9f88-a670fb585948" />
