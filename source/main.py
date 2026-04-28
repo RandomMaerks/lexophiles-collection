@@ -89,7 +89,7 @@ def play():
         print(
             "No games loaded.\n"
             "(Your custom game is in the '/games' folder? "
-            "It needs a run() module to be found.)"
+            "It needs a run() function to be found.)"
             )
 
         return
