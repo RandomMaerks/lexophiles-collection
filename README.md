@@ -6,15 +6,15 @@ Largely coded in Python (the only language I know to an intermediate level).
 
 Small warning: Some games made by me occasionally uses box drawing characters which may not always be supported by a monospaced font, so make sure you use one that does. I use [Iosevka](https://github.com/be5invis/Iosevka) (SS14, Extended) and I found [Cascadia Code](https://github.com/microsoft/cascadia-code) which also supports these characters.
 
-## How to run
+## Functionality
 
-Download everything in the source code (pls), move the current directory to the source folder, then run the `main.py` file:
+To run the game, download everything in the source code (pls), move the current directory to the source folder, then run the `main.py` file:
 
 ```
 py main.py
 ```
 
-## Functionality
+(Yes, you do need Python (>=3.9) installed for it to run.)
 
 Upon running the script, you will be met with the Menu screen, which will be your main navigation point.
 
@@ -30,7 +30,11 @@ There are currently **5 modes**:
 
 When selecting **Play**, LC will look through all files in the `games` folder, and any game that is a Python module and has a `run()` function will be loaded. What this means is you can now add your own modules (games) inside that folder, and use LC as an interface to play it and save your game history.
 
-Want to make your own game that can be run on Lexophile's Collection? Check out [the tutorial here](tutorial/tutorial.md). Maybe share it in [`Discussion`](https://github.com/RandomMaerks/lexophiles-collection/discussions) if you want.
+## Make & import a custom game
+
+Want to make your own game that can be run on Lexophile's Collection? Check out [the tutorial here](tutorial/tutorial.md). Maybe share it in [Discussion](https://github.com/RandomMaerks/lexophiles-collection/discussions) if you want.
+
+To import a game, just drag your `.py` file into the `games` folder. The interface will automatically pick it up at runtime, so you don't have to exit and reenter the game.
 
 ## Premade word games
 
