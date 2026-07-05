@@ -6,7 +6,7 @@ This guide assumes you know a little bit about Python and coding in general.
 
 ## Structure
 
-Your game must be a Python module with the `.py` file extension and it must have a `run()` function (including `context` as an argument). If not, LC will ignore it entirely.
+Your game must be a Python module with the `.py` file extension and it must have a `run()` function (including `context` as a parameter). If not, LC will ignore it entirely.
 
 Generally, you can structure your module like this:
 
