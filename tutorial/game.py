@@ -24,8 +24,8 @@ def writeHistory(historyDir, lines):
     currentTime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     historyLines = [f"[{currentTime}] {name}"]
-    for key in lines:
-        historyLines.append(f"> {key}: {lines[key]}")
+    for key, value in lines.items():
+        historyLines.append(f"> {key}: {value}")
 
     with open(historyDir, "a", encoding="utf8") as history:
         history.write('\n'.join(historyLines) + '\n\n')
