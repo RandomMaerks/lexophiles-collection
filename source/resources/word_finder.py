@@ -2,21 +2,39 @@ from itertools import permutations
 import random
 
 def wordFinder(
-    wordList,
-    longest = False,
-    wordLength = [None, None],
-    order = None,
-    unique = None,
-    restriction = [None, None, None],
-    pattern = [None, None, None, None],
-    excluded = []
-    ):
+    wordList: list,
+    longest: bool = False,
+    wordLength: list[int, int] = None,
+    order: str | None = None,
+    unique: str | None = None,
+    restriction: list[str, str, str] = None,
+    pattern: list[str, str, str, str] = None,
+    excluded: list = None
+    ) -> list:
+    """
+    Returns a list of words filtered out by the requirements from the input word list.
+
+    Arguments:
+    - longest (bool): Only the longest words get returned
+    - wordLength (list[int, int]): Minimum and maximum length of words
+    - order (str | None): `None` for no order, `reversed` for reversed order, and anything else for alphabetical
+    - unique (str | None): `None` for default, `unique` for no duplicate, `duplicate` for only duplicates
+    - restriction (list[str, str, str]): Letters that can be included, letters that can ONLY be used, and letters to avoid
+    - pattern (list[str, str, str, str]): Start, end, contain, and pattern (use `.` to denote wildcards)
+    - excluded (list): List of words to ignore entirely
+    """
+
+    if wordLength is None: wordLength = [None, None]
+    if restriction is None: restriction = [None, None, None]
+    if pattern is None: pattern = [None, None, None, None]
+    if excluded is None: excluded = []
 
     if len(wordList) < 1:
         return ["No dictionary selected, cannot find words\n\n", 0]
     
     foundWords = []
-    longestWords = [""]
+    longestWords = []
+    longestWords_length = 0
     
     for word in wordList:
         # Word length: min, max
@@ -27,44 +45,23 @@ def wordFinder(
         
         # Alphabetical order: None = no order, 'reversed' = reversed order, anything else = default
         if order:
-            alphabet = "abcdefghijklmnopqrstuvwxyz"
-            if order == "reversed": alphabet = ''.join([alphabet[25-i] for i, x in enumerate(alphabet)])
-            ref = alphabet
-            inOrder = True
-            for char in word:
-                if char in ref:
-                    index = ref.find(char)
-                    ref = ref[index:]
-                else:
-                    inOrder = False
-                    break
+            if order != 'reversed':
+                inOrder = all(l[i] <= l[i+1] for i in range(len(l) - 1))
+            else:
+                inOrder = all(l[i] >= l[i+1] for i in range(len(l) - 1))
             if inOrder != True:
                 continue
         
         # Unique / duplicate: None = skipped
-        if unique == "unique":
-            isUnique = True
-            for charIndex, char in enumerate(word):
-                removed = word[:charIndex] + word[charIndex+1:]
-                if char in removed:
-                    isUnique = False
-                    break
-            if isUnique != True:
-                continue
-        if unique == "duplicate":
-            isDuplicate = True
-            for charIndex, char in enumerate(word):
-                removed = word[:charIndex] + word[charIndex+1:]
-                if char not in removed:
-                    isDuplicate = False
-                    break
-            if isDuplicate != True:
-                continue
+        if unique == "unique" and not all(word.count(char) == 1 for char in word):
+            continue
+        if unique == "duplicate" and not all(word.count(char) > 1 for char in word):
+            continue
         
         # Letter restriction: [include, only include, avoid]
         if restriction[0] is not None and not all(restriction[0][i] in word for i in range(len(restriction[0]))):
             continue
-        if restriction[1] is not None and any(word.count(i) not in range(0, restriction[1].count(i)+1) for i in word):
+        if restriction[1] is not None and any(word.count(char) not in range(0, restriction[1].count(char)+1) for char in word):
             continue
         if restriction[2] is not None and not all(restriction[2][i] not in word for i in range(len(restriction[2]))):
             continue
@@ -86,15 +83,12 @@ def wordFinder(
         if len(excluded) > 0 and not word not in excluded:
             continue
         
-        if all(len(longestWords[i]) < len(word) for i in range(len(longestWords))):
-            longestWords = []
-            longestWords.append(word)
-        elif any(len(longestWords[i]) == len(word) for i in range(len(longestWords))):
+        if len(word) > longestWords_length:
+            longestWords = [word]
+            longestWords_length = len(word)
+        elif len(word) == longestWords_length:
             longestWords.append(word)
         foundWords.append(word)
 
-    if len(foundWords) > 0:
-        if longest == True: return longestWords
-        else: return foundWords
-    else:
-        return []
+    if longest == True: return longestWords
+    else: return foundWords
