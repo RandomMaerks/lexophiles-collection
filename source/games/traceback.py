@@ -225,7 +225,7 @@ def run(context):
 
     lines = {
         "Difficulty" : f"{difficulty}",
-        "Solution & starter:" : f"{keyword}, {starterWord}",
+        "Solution & starter" : f"{keyword}, {starterWord}",
         "Guesses" : f"({guessNumber-1}/{totalGuesses}) {', '.join(answerList)}",
     }
     writeHistory(context.history, lines)
