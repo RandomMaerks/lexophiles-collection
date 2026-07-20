@@ -3,6 +3,7 @@ import pkgutil
 
 wordList = []
 running = True
+LC_VERSION = "2.0.1"
 
 ### --------------- GAME CONTEXT ---------------
 
@@ -19,11 +20,24 @@ def loadGames():
     package_name = "games"
     package = importlib.import_module(package_name)
 
-    for _, module_name, _ in pkgutil.iter_modules(package.__path__):
-        module = importlib.import_module(f"{package_name}.{module_name}")
+    errors = []
 
-        if hasattr(module, "run"):
-            games.append(module)
+    for _, module_name, _ in pkgutil.iter_modules(package.__path__):
+        try:
+            module = importlib.import_module(f"{package_name}.{module_name}")
+            if hasattr(module, "run"):
+                games.append(module)
+        except Exception as e:
+            errors.append((module_name, e))
+
+    if errors:
+        plural = "s" if len(errors) != 1 else ""
+        print(
+            f"[FAIL] The following game{plural} threw an exception while loading and will not be added:"
+        )
+        for module_name, e in errors:
+            print(f"- {module_name}.py: {repr(e)}")
+        print()
 
     return games
 
@@ -41,7 +55,7 @@ def menu():
         "++------------------------------------------++\n"
         "||          LEXOPHILE'S COLLECTION          ||\n"
         "||                                          ||\n"
-        "||          > Version: 2.0.0                ||\n"
+        f"||          > Version: {LC_VERSION:<21}||\n"
         "++------------------------------------------++\n"
         "[1] Play      : Choose a game to play         \n"
         "[2] Dictionary: Choose a dictionary           \n"
@@ -99,19 +113,22 @@ def play():
 
     for i, game in enumerate(games):
         indexDisplay = str(i+1)
+
+        game_name = getattr(game, 'name', 'Unnamed')
+        game_version = getattr(game, 'version', '1')
+        game_creator = getattr(game, 'creator', 'Unknown')
+        game_desc = getattr(game, 'description', '')
+
         print(
-            f"[{indexDisplay}] "
-            f"{getattr(game, 'name', 'Unnamed')} "
-            f"(version: {getattr(game, 'version', '1')}) "
-            f"(creator: {getattr(game, 'creator', 'Unknown')})\n"
-            f"{' '*len(indexDisplay)}   {getattr(game, 'description', '')}\n"
+            f"[{indexDisplay}] {game_name} (creator: {game_creator}, v{game_version})"
+            f"\n{' '*len(indexDisplay)}   {game_desc}\n"
             )
 
     print("* Choose game (int):")
     while True:
         try:
             choice = int(input("> ")) - 1
-        except Exception:
+        except:
             print("Invalid input. Try again.")
             continue
 
@@ -120,13 +137,25 @@ def play():
             continue
 
         break
-    
+
+    game = games[choice]    
     try:
-        games[choice].run(context)
+        game.run(context)
     except Exception as e:
+        game_name = getattr(game, 'name', 'Unnamed')
+        game_version = getattr(game, 'version', '1')
+        game_creator = getattr(game, 'creator', 'Unknown')
+        game_url = getattr(game, 'url', 'Not available')
+
         print(
-            f"{getattr(games[choice], 'name', 'Unnamed')} has crashed!\n"
-            f"{repr(e)}"
+            f"\n[FAIL] {game_name} has crashed!\n"
+            f"{'-'*30}\n"
+            f"Game: {game_name}\n"
+            f"Version: {game_version}\n"
+            f"Creator: {game_creator}\n"
+            f"URL: {game_url}\n\n"
+            f"Error: {repr(e)}\n"
+            f"{'-'*30}\n"
         )
 
 ### --------------- DICTIONARY --------------- 
@@ -210,7 +239,7 @@ def about():
         "check the GitHub repository, link below.      \n"
         "\n"
         "Author: RandomMaerks (github.com/RandomMaerks)\n"
-        "Version: 2.0.0                                \n"
+        f"Version: {LC_VERSION}                        \n"
         "Minimum requirements: Python 3.9              \n"
         "\n"
         "Dictionaries:                                 \n"
