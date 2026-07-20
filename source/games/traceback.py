@@ -8,7 +8,7 @@ import random
 name = "Traceback"
 creator = "RandomMaerks"
 description = "Find the original word from a set of word hints."
-version = "1.0"
+version = "1.1"
 
 ### --------------- FUNCTIONS ---------------
 
@@ -161,7 +161,7 @@ def run(context):
             except UnboundLocalError:
                 print("Incorrect combo. Try again.")
                 continue
-            except ValueError:
+            except (ValueError, IndexError):
                 print("Your index is incorrect. Try again.")
                 continue
 
